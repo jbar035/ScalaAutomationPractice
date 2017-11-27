@@ -1,4 +1,4 @@
-package appName.pages
+package demoAutomation.pages
 
 object GovUkPage extends WebPage {
 
@@ -6,5 +6,6 @@ object GovUkPage extends WebPage {
 
   override def expectedPageTitle: Option[String] = Some("Welcome to GOV.UK")
   override def expectedPageHeader: Option[String] = Some("Welcome to GOV.UK")
+
 
 }

@@ -1,13 +1,15 @@
-package appName.pages
+package demoAutomation.pages
 
-import appName.stepdefs.Steps
-import appName.utils.Configuration
+import demoAutomation.pages.TheInternetHomepage.linkText
+import demoAutomation.stepdefs.Steps
+import demoAutomation.utils.Configuration
 import org.openqa.selenium.{WebDriver, WebElement}
 import org.openqa.selenium.support.ui.{ExpectedCondition, WebDriverWait}
 import org.openqa.selenium.support.ui.ExpectedConditions._
 import org.scalatest.selenium.WebBrowser
 import org.scalatest.time.{Seconds, Span}
 import org.scalatest.{Assertions, Matchers}
+
 import scala.concurrent.duration.Duration
 
 
@@ -16,7 +18,7 @@ trait WebPage extends org.scalatest.selenium.Page with WebBrowser with Assertion
   val relativeUrl = ""
   val port = 8080
 
-  lazy val envUrl : String = Configuration.settings.url
+  lazy val envUrl: String = Configuration.settings.url
 
   implicit val duration: Duration = Span(2, Seconds)
 
@@ -32,8 +34,16 @@ trait WebPage extends org.scalatest.selenium.Page with WebBrowser with Assertion
 
   protected def pageHeader: Query = cssSelector("h1")
 
+  //
+  protected def altPageHeader: Query = cssSelector("h3")
+
   def pageHeaderText() = {
     pageHeader.element.text
+  }
+
+  //
+  def altPageHeaderText() = {
+    altPageHeader.element.text
   }
 
   def waitForPageToLoad: WebElement = {
@@ -43,10 +53,20 @@ trait WebPage extends org.scalatest.selenium.Page with WebBrowser with Assertion
   //TODO: determine if I want to keep the below at page trait level. Could be better to define on a page by page basis as not always the same criteria
 
   def expectedPageTitle: Option[String]
+
   def expectedPageHeader: Option[String]
 
   protected def pageHeaderShouldBeCorrect(): Unit = {
     expectedPageHeader.foreach(pageHeaderText shouldBe _)
+  }
+
+  //
+  protected def altPageHeaderShouldBeCorrect(): Unit = {
+    expectedPageHeader.foreach(altPageHeaderText shouldBe _)
+  }
+
+  protected def multiPageHeaderShouldBeCorrect(expectedPageTitle: String*): Unit ={
+    expectedPageTitle.foreach((pageHeaderText shouldBe _))
   }
 
   protected def pageTitleShouldBeCorrect(): Unit = {
@@ -57,5 +77,16 @@ trait WebPage extends org.scalatest.selenium.Page with WebBrowser with Assertion
     pageTitleShouldBeCorrect()
     pageHeaderShouldBeCorrect()
   }
+
+  def altShouldBeLoaded(): Unit = {
+    pageTitleShouldBeCorrect()
+    altPageHeaderShouldBeCorrect()
+  }
+
+  def enterText(value: String, selector: String): Unit = {
+    textField(selector).value_=(value)
+  }
+
+
 
 }

@@ -1,9 +1,9 @@
-package appName.pages.auth
+package demoAutomation.pages.auth
 
-import appName.data.TestClient
+import demoAutomation.data.TestClient
 import org.openqa.selenium.{WebDriver, WebElement}
 import org.openqa.selenium.support.ui.ExpectedConditions._
-import appName.pages.WebPage
+import demoAutomation.pages.WebPage
 
 object AuthWizardPage extends WebPage {
 

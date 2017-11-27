@@ -1,6 +1,6 @@
-package appName.stepdefs
+package demoAutomation.stepdefs
 
-import appName.pages.GovUkPage
+import demoAutomation.pages.GovUkPage
 
 
 class GovUkSteps extends Steps {

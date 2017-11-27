@@ -1,7 +1,7 @@
-package appName.data
+package demoAutomation.data
 
-import appName.utils.Environment
-import appName.utils.Configuration.environment
+import demoAutomation.utils.Environment
+import demoAutomation.utils.Configuration.environment
 
 case class TestClient(nino: String)
 

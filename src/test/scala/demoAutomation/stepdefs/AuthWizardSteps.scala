@@ -1,7 +1,7 @@
-package appName.stepdefs
+package demoAutomation.stepdefs
 
-import appName.pages.auth.AuthWizardPage
-import appName.data.ClientTestData._
+import demoAutomation.pages.auth.AuthWizardPage
+import demoAutomation.data.ClientTestData._
 
 class AuthWizardSteps extends Steps {
 

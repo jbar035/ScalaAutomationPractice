@@ -1,4 +1,4 @@
-package appName.utils
+package demoAutomation.utils
 
 
 class Configuration(val url: String, val BROWSER: String = System.getProperty("browser", "firefox"))

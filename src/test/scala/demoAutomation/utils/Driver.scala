@@ -1,4 +1,4 @@
-package appName.utils
+package demoAutomation.utils
 
 import cats.syntax.either._
 import org.openqa.selenium.WebDriver
