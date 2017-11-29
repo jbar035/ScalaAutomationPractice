@@ -1,9 +1,6 @@
 package demoAutomation.stepdefs
 
-import demoAutomation.pages.TheInternetHomepage
-import demoAutomation.pages.ABTestingPage
-import demoAutomation.pages.BasicAuthPage
-import demoAutomation.pages.CheckboxesPage
+import demoAutomation.pages._
 
 class TheInternetHerokuAppSteps extends Steps {
 
@@ -16,7 +13,7 @@ class TheInternetHerokuAppSteps extends Steps {
   }
 
   When("""^I click on the "(.*)" link$"""){ (arg1: String) =>
-    TheInternetHomepage.clickOnTopic(arg1)
+    TheInternetHomepage.clickOnLink(arg1)
   }
 
   Then("""^the A/B page should be loaded$"""){ () =>
@@ -34,6 +31,54 @@ class TheInternetHerokuAppSteps extends Steps {
   Then("""^the last checkbox is checked$"""){ () =>
     CheckboxesPage.checkCheckboxes()
   }
+
+  Then("""^the Javascript alert page should be loaded$""") { () =>
+    JavascriptAlertPage.altShouldBeLoaded()
+
+  }
+
+  And("""^I click the second button on the page$""") { () =>
+    JavascriptAlertPage.clickSecondButton()
+  }
+
+  When("""^I accept the confirmation alert$""") { () =>
+    JavascriptAlertPage.acceptAlert()
+  }
+
+  Then("""^the result should be "([^"]*)"$"""){ (arg0:String) =>
+    JavascriptAlertPage.checkResult(arg0)
+  }
+
+  When("""^I select dropdown Option 1$"""){ () =>
+    DropdownPage.select()
+
+  }
+
+  Then("""^the selected value should be displayed$"""){ () =>
+    DropdownPage.checkDropdownValue()
+  }
+
+  When("""^I fail an assertion on the page header$"""){ () =>
+    Screenshots.failATest()
+  }
+
+  Then("""^the Dynamically Loaded Page Elements page should be loaded$"""){ () =>
+    DynamicLoadingPage.altShouldBeLoaded()
+  }
+
+  When("""^I click on "([^"]*)"$"""){ (arg0:String) =>
+    DynamicLoadingPage.clickOnLink(arg0)
+  }
+
+  When("""^I click the start button$"""){ () =>
+    DynamicLoadingPage.clickStartButton()
+  }
+
+  Then("""^I wait until the message is displayed$"""){ () =>
+    DynamicLoadingPage.waitForMessage()
+    DynamicLoadingPage.checkUnhiddenElement()
+  }
+
 
 
 }

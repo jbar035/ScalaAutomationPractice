@@ -1,5 +1,7 @@
 package demoAutomation.pages
 
+import demoAutomation.pages.DynamicLoadingPage.{messageElement, waitFor}
+import demoAutomation.pages.JavascriptAlertPage.cssSelector
 import demoAutomation.pages.TheInternetHomepage.linkText
 import demoAutomation.stepdefs.Steps
 import demoAutomation.utils.Configuration
@@ -65,7 +67,7 @@ trait WebPage extends org.scalatest.selenium.Page with WebBrowser with Assertion
     expectedPageHeader.foreach(altPageHeaderText shouldBe _)
   }
 
-  protected def multiPageHeaderShouldBeCorrect(expectedPageTitle: String*): Unit ={
+  protected def multiPageHeaderShouldBeCorrect(expectedPageTitle: String*): Unit = {
     expectedPageTitle.foreach((pageHeaderText shouldBe _))
   }
 
@@ -83,10 +85,65 @@ trait WebPage extends org.scalatest.selenium.Page with WebBrowser with Assertion
     altPageHeaderShouldBeCorrect()
   }
 
-  def enterText(value: String, selector: String): Unit = {
+  def enterTextIntoTextField(value: String, selector: String): Unit = {
     textField(selector).value_=(value)
   }
 
+  def checkResult(result: String, selector: String): Unit = {
+    cssSelector(selector).element.text should be(result)
+  }
 
+  def secondaryPageTitle(title: String): Unit = {
+    title shouldBe "File Uploaded!"
+  }
+
+  def clickOnLink(linkToClick: String): Unit = {
+    clickOn(linkText(linkToClick))
+  }
+
+  def clickOnButtonWithId(idToClick: String): Unit = {
+    clickOn(id(idToClick))
+  }
+
+  def clickOnButtonWithXpath(xpathToClick: String): Unit = {
+    clickOn(xpath(xpathToClick))
+  }
+
+  def waitForElement(element: Query): WebElement = {
+    waitFor(visibilityOfElementLocated(element.by))
+  }
+
+  def checkResultImproved(result: String, element: Query): Unit = {
+    element.findElement.get.text shouldBe result
+  }
+
+  //////////////////////////
+  //////Useful methods//////
+  //////////////////////////
+
+  //  def waitForElement(element: Query): WebElement = {
+  //    waitFor(visibilityOfElementLocated(element.by))
+  //  }
+  //  def clickOnButtonWithId(idToClick: String): Unit = {
+  //    clickOn(id(idToClick))
+  //    Thread.sleep(500)
+  //  }
+  //  def clickOnButtonWithXpath(xpathToClick: String): Unit = {
+  //    clickOn(xpath(xpathToClick))
+  //  }
+  //  def clickOnLink(linkToClick: String): Unit = {
+  //    clickOn(linkText(linkToClick))
+  //  }
+  //  def enterTextIntoTextField(value: String, selector: String): Unit = {
+  //    textField(selector).value_= (value)
+  //  }
+  //  def waitForPageToLoad: WebElement = {
+  //    waitFor(visibilityOfElementLocated(pageHeader.by))
+  //  }
+  //  def waitFor[T](condition: ExpectedCondition[T])(implicit wait: WebDriverWait): T = wait.until(condition)
+  //  protected def pageHeader: Query = cssSelector("h1")
+  //  def goToPage(): Unit = go to url
+  //
+  //  def getCurrentUrl()(implicit driver: WebDriver): String = driver.getCurrentUrl
 
 }

@@ -7,8 +7,6 @@ object TheInternetHomepage extends WebPage {
   override def expectedPageTitle: Option[String] = Some("The Internet")
   override def expectedPageHeader: Option[String] = Some("Welcome to the-internet")
 
-  def clickOnTopic(topic: String): Unit = {
-    click on linkText(topic)
-  }
+
 
 }
