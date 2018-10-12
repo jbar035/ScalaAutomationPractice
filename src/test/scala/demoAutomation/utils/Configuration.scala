@@ -31,15 +31,15 @@ object Configuration {
         )
       case Environment.Dev =>
         new Configuration(
-          url = "https://www-dev.tax.service.gov.uk"
+          url = "removed as may cause leak detection with hmrc"
         )
       case Environment.Qa =>
         new Configuration(
-          url = "https://www-qa.tax.service.gov.uk"
+          url = "removed as may cause leak detection with hmrc"
         )
       case Environment.Staging =>
         new Configuration(
-          url = "https://www-staging.tax.service.gov.uk"
+          url = "removed as may cause leak detection with hmrc"
         )
       case _ => throw new IllegalArgumentException(s"Environment '$environment' not known")
     }
